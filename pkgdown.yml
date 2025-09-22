@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   Quirks: Quirks.html
   Setup: Setup.html
-last_built: 2025-09-22T00:12Z
+last_built: 2025-09-22T00:18Z
 urls:
   reference: https://visruthsk.github.io/pkgdownConfig/reference
   article: https://visruthsk.github.io/pkgdownConfig/articles
