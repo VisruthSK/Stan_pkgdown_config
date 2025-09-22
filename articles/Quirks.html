@@ -11,7 +11,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
-<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_3-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
@@ -38,7 +44,7 @@
       pkgdownConfig
     </a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,18 +117,25 @@
 
 
     <p>Due to how the theme is written, there are some thing you should note.</p>
+<section class="level2"><h2 id="templates">Templates<a class="anchor" aria-label="anchor" href="#templates"></a>
+</h2>
 <p>This theme uses partials to override the default templates for the navbar and for <code>head</code>. These are both pinned at a <a href="https://github.com/r-lib/pkgdown/tree/fe04924b3df129bea60ac871614b01d87bcae147" class="external-link">specific commit</a>. If you notice that the theme is behind upstream, please open an issue.</p>
+<section class="level3"><h3 id="before-title">before-title<a class="anchor" aria-label="anchor" href="#before-title"></a>
+</h3>
 <p>Since the theme overrides the navbar partial to insert the logo, anything HTML put in <code>before-title</code> will appear before the logo.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">template</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">includes</span><span class="kw">:</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">    # before_title_AND_LOGO</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">    before_title</span><span class="kw">: </span><span class="ch">|</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      My_cool_html</span></code></pre></div>
-<p>I left this in so that the website wouldn’t fail silently and eat your input, but I hazard that you won’t want to put anything here.</p>
-
-
-
-<script id="quarto-html-after-body" type="application/javascript">
+<p>I left the functionality in so that the website wouldn’t fail silently and eat your input, but I hazard that you won’t want to put anything before the logo. If you want to put things in <code>before_title</code> you should copy my <code>navbar.HTML</code> into your package’s pkgdown configuration and edit it, putting HTML where it says <code>{#includes}{{{before_navbar}}}{{/includes}}</code>.</p>
+</section></section><section class="level2"><h2 id="logs-say-image-missing">Logs Say Image Missing<a class="anchor" aria-label="anchor" href="#logs-say-image-missing"></a>
+</h2>
+<p>This template copies over the Stan hex logo to root and references that manually in the templates, which <code>pkgdown</code> doens’t like. As such, you’ll get errors like</p>
+<pre><code>Missing images in .github/CONTRIBUTING.md: logo.png
+ℹ pkgdown can only use images in man/figures and vignettes</code></pre>
+<p>If you actually navigate to that page the logo will be there. I may fix/change this by referencing man/figures/logo (which is also copied over).</p>
+</section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -205,7 +218,8 @@
       }
     }
   });
-  </script></main>
+  </script></main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
